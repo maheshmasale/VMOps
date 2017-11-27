@@ -7,6 +7,7 @@ var dict = require('./aws_instance_details.json');
 var os = require('os');
 var sleep = require('sleep');
 
+// This is the dictonary to shrink a EC2 instance from one type to another type.
 var version_shrink = {
     "t2.2xlarge" : "t2.xlarge",
     "t2.xlarge" : "t2.large",
@@ -40,7 +41,7 @@ var version_shrink = {
     "c5.xlarge" : "c5.large",
 };
 
-
+// This is the function to get the list of instances running on the deploy infrastructure. 
 function getListOfInstances(callback){
     cmd.get(
         "/etc/ansible/hosts --refresh",
@@ -426,7 +427,12 @@ function shrink(rawtext,callback){
         
         //Check if the vm exists
         if(! fs.existsSync(vm_file)){
-            callback("The VM '"+vm_name+"' does not exist");
+            if(!vm_name){
+                callback("Please provide VM name after shrink command!");
+            }
+            else{
+                callback("The VM '"+vm_name+"' does not exist");
+            }
             return;
         }
     
@@ -510,6 +516,11 @@ function getExactCount(filename){
     return exact_count;
 }
 exports.getExactCount = getExactCount;
+
+function default_msg(rawtext,callback){
+    callback("Command not supported in VMOps!!\nPlease use one from below: \n1. 'firecommand' \n2. 'merged_version' \n3. 'merge' \n4. 'list_shrinkable' \n5. 'shrinked_version' \n6. 'shrink'\n");
+}
+exports.default_msg = default_msg;
 
 
 

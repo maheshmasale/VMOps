@@ -74,3 +74,10 @@ controller.hears('shrink',['mention', 'direct_mention','direct_message'], functi
   })
 });
 
+controller.hears('.*',['mention', 'direct_mention','direct_message'], function(bot,message) 
+{
+  //console.log(message)
+  vmops.default_msg(message.text,function(w){
+  bot.reply(message,w)
+})
+});
