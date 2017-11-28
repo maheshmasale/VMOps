@@ -450,7 +450,7 @@ function shrink(rawtext,callback){
     
         var vm_id = ""
         var vm_type = ""
-        command = "aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,Tags[?Key==`Name`].Value]'",
+        command = "aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,Tags[?Key==`Name`].Value]' --output text",
         console.log(command)
         cmd.get(
             command,
