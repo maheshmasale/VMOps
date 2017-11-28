@@ -351,8 +351,8 @@ function list_shrinkable(rawtext,callback){
             var outputStr = "The list of Shrnkiable VMs: \n\t";
             var fileStr = "";
             for(var j = 0; j<instance_shrincable.length;j++){
-                outputStr += instance_shrincable + " \n\t";
-                fileStr += instance_shrincable + " \n";
+                outputStr += instance_shrincable[j] + " \n\t";
+                fileStr += instance_shrincable[j] + " \n";
             }
             //write to a file 
             fs.writeFileSync('./AnsiblePlaybooks/shrinkable_vm_list.txt',fileStr);
