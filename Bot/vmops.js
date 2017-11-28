@@ -461,8 +461,8 @@ function shrink(rawtext,callback){
                 for (var i = 0; i < list1.length; i++ )
                 {
                     if (list1[i] === vm_name){
-                        vm_id += list1[i-2]
-                        vm_type += list1[i-1]
+                        vm_id = list1[i-2]
+                        vm_type = list1[i-1]
                     }
                 }
                 console.log(vm_id)
